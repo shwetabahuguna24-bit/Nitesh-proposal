@@ -13,7 +13,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
 .card {
@@ -23,13 +22,15 @@ body {
     border-radius: 22px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    animation: fadeIn 2s ease;
-    position: relative;
+}
+
+.heart {
+    font-size: 42px;
+    animation: pulse 1.5s infinite;
 }
 
 h1 {
     color: #e63946;
-    margin-bottom: 8px;
 }
 
 p {
@@ -38,14 +39,8 @@ p {
     line-height: 1.6;
 }
 
-.heart {
-    font-size: 42px;
-    animation: pulse 1.5s infinite;
-}
-
 .buttons {
     margin-top: 20px;
-    position: relative;
 }
 
 .btn-yes {
@@ -56,17 +51,24 @@ p {
     border-radius: 25px;
     font-size: 16px;
     cursor: pointer;
-    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .btn-no {
-    padding: 10px 20px;
-    background: #ccc;
+    padding: 8px 16px;
+    background: #f1f1f1;
     border: none;
     border-radius: 25px;
     font-size: 14px;
     cursor: pointer;
-    position: absolute;
+}
+
+#finalMessage {
+    display: none;
+    margin-top: 20px;
+    color: #e63946;
+    font-weight: bold;
+    pointer-events: none;
 }
 
 @keyframes pulse {
@@ -74,20 +76,13 @@ p {
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
 }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
+<!-- Background music (plays on YES click) -->
 <audio id="bgMusic" loop>
-    <source src="https://archive.org/download/carpenters-they-long-to-be-close-to-you/Carpenters%20-%20They%20Long%20To%20Be%20Close%20To%20You.mp3" type="audio/mpeg">
-</audio>
     <source src="https://archive.org/download/carpenters-they-long-to-be-close-to-you/Carpenters%20-%20They%20Long%20To%20Be%20Close%20To%20You.mp3" type="audio/mpeg">
 </audio>
 
@@ -96,64 +91,52 @@ p {
     <h1>Nitesh</h1>
 
     <p>
-        I could’ve said this casually…  
-        but you deserve something intentional.
+        Somewhere between conversations, smiles,  
+        and moments I didn’t plan for…
     </p>
 
     <p>
-        Somewhere between conversations, smiles, and stolen glances,  
         you became someone I don’t want to imagine my days without.
     </p>
 
-    <p>
-        So here I am — not hinting, not joking —
-        just honestly asking…
-    </p>
-
+    <p><strong>So tell me honestly…</strong></p>
     <p><strong>Will you be mine?</strong></p>
 
     <div class="buttons">
-    <button class="btn-yes" onclick="yesClicked()">Yes 💖</button>
-    <button class="btn-no" id="noBtn" onmouseover="runAway()">No 🙈</button>
+        <button class="btn-yes" onclick="yesClicked()">Yes 💖</button><br>
+        <button class="btn-no" onclick="nudgeYes()">
+            No other option for you 😌 (check Yes)
+        </button>
+    </div>
+
+    <p id="finalMessage">
+        I knew it 😌💘<br><br>
+        Congratulations, you’ve officially signed up for:<br>
+        • stolen glances<br>
+        • soft chaos<br>
+        • and me being a little too into you<br><br>
+        See you soon, handsome 💫
+    </p>
 </div>
-
-<p id="finalMessage" style="display:none; margin-top:20px; color:#e63946; font-weight:bold;">
-    ...
-</p>
-
-</div>
-
 
 <script>
 function yesClicked() {
-    const music = document.getElementById("bgMusic");
-    music.play();
+    var music = document.getElementById("bgMusic");
+    if (music) {
+        music.play();
+    }
 
-    document.getElementById("finalMessage").style.display = "block";
-}
-        "I knew it 😌💘\n\n" +
-        "Congratulations, you’ve officially signed up for:\n" +
-        "• stolen glances\n" +
-        "• soft chaos\n" +
-        "• and me being a little too into you\n\n" +
-        "See you soon, handsome 💫"
-    );
-}
-    
-        "I knew it 😌💘\n\n" +
-        "Congratulations, you’ve officially signed up for:\n" +
-        "• stolen glances\n" +
-        "• soft chaos\n" +
-        "• and me being a little too into you\n\n" +
-        "See you soon, handsome 💫"
-    );
+    var msg = document.getElementById("finalMessage");
+    if (msg) {
+        msg.style.display = "block";
+    }
 }
 
-function runAway() {
-    const btn = document.getElementById("noBtn");
-    const x = Math.random() * 200 - 100;
-    const y = Math.random() * 150 - 75;
-    btn.style.transform = `translate(${x}px, ${y}px)`;
+function nudgeYes() {
+    var msg = document.getElementById("finalMessage");
+    if (msg) {
+        msg.style.display = "block";
+    }
 }
 </script>
 
