@@ -113,17 +113,24 @@ p {
     <p><strong>Will you be mine?</strong></p>
 
     <div class="buttons">
-        <button class="btn-yes" onclick="yesClicked()">Yes 💖</button>
-        <button class="btn-no" id="noBtn" onmouseover="runAway()">No 🙈</button>
-    </div>
+    <button class="btn-yes" onclick="yesClicked()">Yes 💖</button>
+    <button class="btn-no" id="noBtn" onmouseover="runAway()">No 🙈</button>
 </div>
+
+<p id="finalMessage" style="display:none; margin-top:20px; color:#e63946; font-weight:bold;">
+    ...
+</p>
+
+</div>
+
 
 <script>
 function yesClicked() {
     const music = document.getElementById("bgMusic");
     music.play();
 
-    alert(
+    document.getElementById("finalMessage").style.display = "block";
+}
         "I knew it 😌💘\n\n" +
         "Congratulations, you’ve officially signed up for:\n" +
         "• stolen glances\n" +
